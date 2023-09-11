@@ -1,8 +1,8 @@
-package com.example.ss1_githubuser
+package com.example.ss1_githubuser.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import com.example.ss1_githubuser.R
 
 class MainActivity : AppCompatActivity() {
 

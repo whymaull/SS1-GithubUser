@@ -1,4 +1,4 @@
-package com.example.ss1_githubuser
+package com.example.ss1_githubuser.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import com.example.ss1_githubuser.R
 import com.example.ss1_githubuser.databinding.FragmentStartBinding
 
 
