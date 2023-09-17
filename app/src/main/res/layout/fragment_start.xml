@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#AEC3AE"
     android:id="@+id/startFragment"
-    tools:context=".ui.StartFragment">
+    tools:context=".ui.detail.StartFragment">
 
     <ImageView
         android:id="@+id/iv_home"

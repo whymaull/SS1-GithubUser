@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#AEC3AE"
+    android:fillViewport="true"
+    tools:context=".ui.detail.DetailFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="ScrollViewSize">
+
+        <ImageView
+            android:id="@+id/imgDetailuser"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="32dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tvDetailname"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="6dp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/imgDetailuser"
+            app:layout_constraintTop_toTopOf="@+id/imgDetailuser"
+            tools:text="Nama User" />
+
+        <TextView
+            android:id="@+id/tvDetailusername"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/tvDetailname"
+            app:layout_constraintStart_toEndOf="@+id/imgDetailuser"
+            app:layout_constraintTop_toBottomOf="@+id/tvDetailname"
+            tools:text="Username" />
+
+        <TextView
+            android:id="@+id/details_tv_location"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:drawablePadding="4dp"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            app:drawableStartCompat="@drawable/baseline_location_24"
+            app:layout_constraintEnd_toEndOf="@+id/tvDetailusername"
+            app:layout_constraintStart_toEndOf="@+id/imgDetailuser"
+            app:layout_constraintTop_toBottomOf="@id/tvDetailusername"
+            tools:text=" Location" />
+
+        <LinearLayout
+            android:id="@+id/userStatsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/imgDetailuser">
+
+            <!-- Reps -->
+            <TextView
+                android:id="@+id/tvDetailreps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:text="@string/repository" />
+
+            <!-- Followers -->
+            <TextView
+                android:id="@+id/tvDetailfollowers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:text="@string/follower" />
+
+            <!-- Following -->
+            <TextView
+                android:id="@+id/details_tv_following"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                tools:text="@string/following" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#AEC3AE"
+            app:layout_constraintTop_toBottomOf="@+id/userStatsLayout"
+            app:tabTextColor="@color/white"
+            tools:ignore="SpeakableTextPresentCheck"/>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabs"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="12dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

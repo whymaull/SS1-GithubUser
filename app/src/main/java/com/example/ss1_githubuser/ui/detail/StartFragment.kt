@@ -1,4 +1,4 @@
-package com.example.ss1_githubuser.ui
+package com.example.ss1_githubuser.ui.detail
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
