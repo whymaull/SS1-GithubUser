@@ -4,15 +4,15 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
-    card_view:cardBackgroundColor="#AEC3AE"
+    card_view:cardBackgroundColor="#E4E4D0"
     card_view:cardCornerRadius="8dp"
     android:layout_gravity="top"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="8dp"
-    android:layout_marginTop="6dp"
+    android:layout_marginTop="4dp"
     android:layout_marginRight="8dp"
-    android:layout_marginBottom="6dp">
+    android:layout_marginBottom="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -35,23 +35,29 @@
 
         <TextView
             android:id="@+id/tvUsername"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="4dp"
+            android:textAlignment="textStart"
             android:textSize="24sp"
+            android:textStyle="bold"
+            card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/imgUserphoto"
             card_view:layout_constraintTop_toTopOf="parent"
             tools:text="Username" />
 
         <TextView
             android:id="@+id/tvUrl"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:textSize="20sp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="4dp"
+            android:textSize="16sp"
+            android:maxLines="1"
             card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/imgUserphoto"
             card_view:layout_constraintTop_toBottomOf="@+id/tvUsername"
             tools:ignore="MissingConstraints"

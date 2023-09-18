@@ -10,8 +10,7 @@ android {
 
 	defaultConfig {
 
-		buildConfigField("String", "GITHUB_TOKEN",
-			"\"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\""
+		buildConfigField("String", "GITHUB_TOKEN", "\"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\""
 		)
 		applicationId = "com.example.ss1_githubuser"
 		minSdk = 24
@@ -52,14 +51,11 @@ dependencies {
 	implementation("androidx.navigation:navigation-ui-ktx:2.7.2")
 	implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
 	implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
-	implementation("androidx.activity:activity-ktx:1.7.2")
 	implementation("com.github.bumptech.glide:glide:4.13.1")
 	implementation("com.loopj.android:android-async-http:1.4.10")
 	implementation("com.squareup.retrofit2:retrofit:2.9.0")
 	implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 	implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.media3:media3-common:1.1.1")
 	testImplementation("junit:junit:4.13.2")
 	androidTestImplementation("androidx.test.ext:junit:1.1.5")
 	androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

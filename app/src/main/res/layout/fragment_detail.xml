@@ -16,11 +16,11 @@
         tools:ignore="ScrollViewSize">
 
         <ImageView
-            android:id="@+id/imgDetailuser"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="32dp"
+            android:id="@+id/imgDetailUser"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="24dp"
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -28,79 +28,84 @@
             tools:src="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/tvDetailname"
-            android:layout_width="250dp"
+            android:id="@+id/tvDetailName"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="6dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/imgDetailuser"
-            app:layout_constraintTop_toTopOf="@+id/imgDetailuser"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgDetailUser"
+            app:layout_constraintTop_toTopOf="@+id/imgDetailUser"
             tools:text="Nama User" />
 
         <TextView
-            android:id="@+id/tvDetailusername"
-            android:layout_width="250dp"
+            android:id="@+id/tvDetailUsername"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginTop="10dp"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/tvDetailname"
-            app:layout_constraintStart_toEndOf="@+id/imgDetailuser"
-            app:layout_constraintTop_toBottomOf="@+id/tvDetailname"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgDetailUser"
+            app:layout_constraintTop_toBottomOf="@+id/tvDetailName"
             tools:text="Username" />
 
         <TextView
-            android:id="@+id/details_tv_location"
-            android:layout_width="250dp"
+            android:id="@+id/tvLocation"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:drawablePadding="4dp"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp"
             app:drawableStartCompat="@drawable/baseline_location_24"
-            app:layout_constraintEnd_toEndOf="@+id/tvDetailusername"
-            app:layout_constraintStart_toEndOf="@+id/imgDetailuser"
-            app:layout_constraintTop_toBottomOf="@id/tvDetailusername"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgDetailUser"
+            app:layout_constraintTop_toBottomOf="@id/tvDetailUsername"
             tools:text=" Location" />
 
         <LinearLayout
             android:id="@+id/userStatsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/imgDetailuser">
+            app:layout_constraintTop_toBottomOf="@+id/imgDetailUser">
 
             <!-- Reps -->
             <TextView
-                android:id="@+id/tvDetailreps"
+                android:id="@+id/tvDetailReps"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:textAlignment="center"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 tools:text="@string/repository" />
 
             <!-- Followers -->
             <TextView
-                android:id="@+id/tvDetailfollowers"
+                android:id="@+id/tvDetailFollowers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:textAlignment="center"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 tools:text="@string/follower" />
 
             <!-- Following -->
             <TextView
-                android:id="@+id/details_tv_following"
+                android:id="@+id/tvDetailFollowing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 tools:text="@string/following" />
         </LinearLayout>
 
@@ -119,15 +124,19 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#AEC3AE"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="#E4E4D0"
             app:layout_constraintTop_toBottomOf="@+id/userStatsLayout"
-            app:tabTextColor="@color/white"
+            app:tabTextColor="@color/black"
             tools:ignore="SpeakableTextPresentCheck"/>
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tabs"
             tools:ignore="MissingConstraints"

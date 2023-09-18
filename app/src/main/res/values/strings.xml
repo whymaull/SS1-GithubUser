@@ -5,21 +5,19 @@
     <string name="search">Search Account</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="searchbar_hint">Cari User</string>
-
+    <string name="user_not_found">User not found please search\n for another username.</string>
     <string name="followers_title">Followers</string>
     <string name="following_title">Following</string>
-    <string name="repository">%d\n repository</string>
-    <string name="gist">%d\n gist</string>
-    <string name="following">%d\n following</string>
-    <string name="follower">%d\n follower</string>
+    <string name="repository">%d\n Repository</string>
+    <string name="following">%d\n Following</string>
+    <string name="follower">%d\n Followers</string>
     <string name="location_placeholder">Location</string>
-    <string name="website_placeholder">Website</string>
-    <string name="company_placeholder">Company Name</string>
     <string name="name_placeholder">Nama</string>
     <string name="username_placeholder">Username</string>
-    <string name="user_not_found">\n</string>
+    <string name="noname">Name not set</string>
+    <string name="nolocation">Location not set</string>
 
-    <string-array name="tab_title">
+    <string-array name="tab">
         <item>@string/followers_title</item>
         <item>@string/following_title</item>
     </string-array>

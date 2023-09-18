@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -37,7 +38,6 @@ class HomeFragment : Fragment() {
         val layoutManager = LinearLayoutManager(requireContext())
         binding.rvUser.layoutManager = layoutManager
 
-        // Inisialisasi Live Data
         myViewModel.listGithubUser.observe(this) { listGithubUser ->
             setUserData(listGithubUser)
         }
@@ -46,6 +46,11 @@ class HomeFragment : Fragment() {
         }
         myViewModel.totalCount.observe(this) {
             showText(it)
+        }
+        myViewModel.status.observe(this) { status ->
+            status?.let {
+                Toast.makeText(context, status.toString(), Toast.LENGTH_SHORT).show()
+            }
         }
         initSearchView()
         myViewModel.searchGithubUser(randomStartingList())
@@ -94,8 +99,10 @@ class HomeFragment : Fragment() {
         val detailFragment = DetailFragment.newInstance(data.login)
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, detailFragment)
-        transaction.addToBackStack(null) // Jika Anda ingin menambahkan fragment ini ke tumpukan kembali
+        transaction.addToBackStack(null)
         transaction.commit()
+        binding.searchView.setQuery("", false)
+        binding.searchView.clearFocus()
     }
 
     private fun showText(totalCount: Int) {
