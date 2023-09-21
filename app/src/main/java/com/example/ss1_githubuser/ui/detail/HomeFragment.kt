@@ -53,13 +53,13 @@ class HomeFragment : Fragment() {
             }
         }
         initSearchView()
-        myViewModel.searchGithubUser(randomStartingList())
+        //myViewModel.searchGithubUser(randomStartingList())
         return binding.root
     }
 
-    private fun randomStartingList(): String {
-        return "wahyu"
-    }
+//    private fun randomStartingList(): String {
+//        return "wahyu"
+//    }
 
     private fun initSearchView() {
         val searchManager = requireActivity().getSystemService(Context.SEARCH_SERVICE) as SearchManager

@@ -51,7 +51,7 @@ class MyViewModel : ViewModel() {
 
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                 _isLoading.value = false
-                Log.e(TAG, "onFailure: ${t.message}")
+                Log.e(TAG, "onFailure: Data tidak dapat ditampilkan")
             }
         })
     }

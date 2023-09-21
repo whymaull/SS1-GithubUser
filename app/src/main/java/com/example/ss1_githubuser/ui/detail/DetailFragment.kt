@@ -5,11 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
-import com.bumptech.glide.Glide
 import com.example.ss1_githubuser.R
 import com.example.ss1_githubuser.adapter.SectionPagerAdapter
 import com.example.ss1_githubuser.data.DetailResponse
@@ -22,24 +20,10 @@ import com.google.android.material.tabs.TabLayoutMediator
 class DetailFragment : Fragment() {
 
     private var _binding: FragmentDetailBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding
     private lateinit var userDetailViewModel: UserDetailViewModel
     private lateinit var detailUser: DetailResponse
     private val loading = Loading()
-
-    companion object {
-        private const val ARG_USERNAME = "username"
-        const val EXTRA_FRAGMENT = "extra_fragment"
-        const val EXTRA_USERNAME = "extra_username"
-
-        fun newInstance(username: String): DetailFragment {
-            val fragment = DetailFragment()
-            val args = Bundle()
-            args.putString(ARG_USERNAME, username)
-            fragment.arguments = args
-            return fragment
-        }
-    }
 
     @SuppressLint("FragmentLiveDataObserve")
     override fun onCreateView(
@@ -53,27 +37,26 @@ class DetailFragment : Fragment() {
         if (userLogin != null) {
             userDetailViewModel.getGithubUser(userLogin)
             userDetailViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-                loading.showLoading(isLoading, binding.progressBar2)
+                binding?.let { loading.showLoading(isLoading, it.progressBar2) }
             }
             userDetailViewModel.listDetail.observe(viewLifecycleOwner) { detailList ->
                 detailUser = detailList
                 setDataToView()
                 setTabLayoutView()
+
             }
         }
-
-        return binding.root
+        return binding!!.root
     }
 
     private fun setDataToView() {
-        binding.apply {
+        binding?.apply {
             detailUser.avatarUrl?.let { imgDetailUser.loadImage(it) }
             tvDetailName.text = detailUser.name ?: getString(R.string.noname)
             tvDetailUsername.text = detailUser.login
             tvDetailFollowers.text = getString(R.string.follower, detailUser.followers)
             tvDetailFollowing.text = getString(R.string.following, detailUser.following)
-            tvDetailReps.text =
-                getString(R.string.repository, detailUser.publicRepos)
+            tvDetailReps.text = getString(R.string.repository, detailUser.publicRepos)
             tvLocation.text = detailUser.location ?: getString(R.string.nolocation)
         }
     }
@@ -82,10 +65,10 @@ class DetailFragment : Fragment() {
         val login = Bundle()
         login.putString(EXTRA_FRAGMENT, detailUser.login)
         val sectionPagerAdapter = SectionPagerAdapter(requireActivity(), login)
-        val viewPager: ViewPager2 = binding.viewPager
+        val viewPager: ViewPager2 = binding!!.viewPager
 
         viewPager.adapter = sectionPagerAdapter
-        val tabs: TabLayout = binding.tabs
+        val tabs: TabLayout = binding!!.tabs
         val tabTitle = resources.getStringArray(R.array.tab)
 
         TabLayoutMediator(tabs, viewPager) { tab, position ->
@@ -93,15 +76,21 @@ class DetailFragment : Fragment() {
         }.attach()
     }
 
-    private fun ImageView.loadImage(url: String) {
-        Glide.with(this)
-            .load(url)
-            .circleCrop()
-            .into(this)
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+    companion object {
+        private const val ARG_USERNAME = "username"
+        const val EXTRA_FRAGMENT = "extra_fragment"
+
+        fun newInstance(username: String): DetailFragment {
+            val fragment = DetailFragment()
+            val args = Bundle()
+            args.putString(ARG_USERNAME, username)
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
 }
