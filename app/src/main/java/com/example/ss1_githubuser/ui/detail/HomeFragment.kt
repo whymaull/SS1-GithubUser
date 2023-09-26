@@ -6,11 +6,18 @@ import android.app.SearchManager
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,9 +26,11 @@ import com.example.ss1_githubuser.adapter.SearchAdapter
 import com.example.ss1_githubuser.data.GithubUser
 import com.example.ss1_githubuser.databinding.FragmentHomeBinding
 import com.example.ss1_githubuser.tools.Loading
+import com.example.ss1_githubuser.ui.settings.SettingsPreferences
 import com.example.ss1_githubuser.ui.viewmodel.MyViewModel
 
-
+//private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+@Suppress("DEPRECATION")
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -38,6 +47,12 @@ class HomeFragment : Fragment() {
         val layoutManager = LinearLayoutManager(requireContext())
         binding.rvUser.layoutManager = layoutManager
 
+        val toolbar = binding.toolbar
+        (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
+
+        //val pref = SettingsPreferences.getInstance(requireActivity().dataStore)
+        //myViewModel = ViewModelProvider(this, SettingsViewModelFactory(pref))[myViewModel::class.java]
+
         myViewModel.listGithubUser.observe(this) { listGithubUser ->
             setUserData(listGithubUser)
         }
@@ -53,13 +68,46 @@ class HomeFragment : Fragment() {
             }
         }
         initSearchView()
-        //myViewModel.searchGithubUser(randomStartingList())
+        myViewModel.searchGithubUser(randomStartingList())
+        setHasOptionsMenu(true)
         return binding.root
     }
+    @Deprecated("Deprecated in Java")
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
 
-//    private fun randomStartingList(): String {
-//        return "wahyu"
-//    }
+    @Deprecated("Deprecated in Java")
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.theme_setting -> {
+                // Arahkan ke fragment Theme
+                val themeFragment = ThemeSettingFragment()
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, themeFragment)
+                    .addToBackStack(null)
+                    .commit()
+                true
+            }
+
+            R.id.favorites -> {
+                // Tindakan yang akan diambil ketika item "favorites" diklik
+                val favUserFragment = FavUserFragment() // Gantilah dengan nama fragment yang sesuai
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, favUserFragment)
+                    .addToBackStack(null)
+                    .commit()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun randomStartingList(): String {
+        return "wahyu"
+    }
 
     private fun initSearchView() {
         val searchManager = requireActivity().getSystemService(Context.SEARCH_SERVICE) as SearchManager

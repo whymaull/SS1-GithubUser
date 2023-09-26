@@ -39,41 +39,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="4dp"
             android:textAlignment="textStart"
             android:textSize="22sp"
             android:textStyle="bold"
-            card_view:layout_constraintEnd_toStartOf="@+id/imageButton"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/imgUserphoto"
             card_view:layout_constraintTop_toTopOf="parent"
             tools:text="Username" />
-
-        <TextView
-            android:id="@+id/tvUrl"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
-            android:textSize="14sp"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toStartOf="@+id/imageButton"
-            card_view:layout_constraintStart_toStartOf="@+id/tvUsername"
-            card_view:layout_constraintTop_toBottomOf="@+id/tvUsername"
-            tools:ignore="MissingConstraints"
-            tools:text="Github URL" />
-
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="4dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/baseline_favorite_border_24"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription,MissingConstraints" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.ss1_githubuser.api.ApiConfig
 import com.example.ss1_githubuser.data.GithubUser
 import com.example.ss1_githubuser.data.UserResponse
+import com.example.ss1_githubuser.ui.settings.SettingsPreferences
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

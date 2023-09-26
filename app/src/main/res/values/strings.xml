@@ -16,6 +16,9 @@
     <string name="username_placeholder">Username</string>
     <string name="noname">Name not set</string>
     <string name="nolocation">Location not set</string>
+    <string name="toolbar">Github User</string>
+    <string name="favoriteduser">Favorited User</string>
+    <string name="theme_setting">Theme Settings</string>
 
     <string-array name="tab">
         <item>@string/followers_title</item>

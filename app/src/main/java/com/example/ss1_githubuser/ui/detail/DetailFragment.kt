@@ -3,8 +3,12 @@ package com.example.ss1_githubuser.ui.detail
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
@@ -17,10 +21,11 @@ import com.example.ss1_githubuser.ui.viewmodel.UserDetailViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
+@Suppress("DEPRECATION")
 class DetailFragment : Fragment() {
 
     private var _binding: FragmentDetailBinding? = null
-    private val binding get() = _binding
+    private val binding get() = _binding!!
     private lateinit var userDetailViewModel: UserDetailViewModel
     private lateinit var detailUser: DetailResponse
     private val loading = Loading()
@@ -33,11 +38,14 @@ class DetailFragment : Fragment() {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
         userDetailViewModel = ViewModelProvider(this)[UserDetailViewModel::class.java]
 
+        val toolbar = binding.toolbar
+        (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
+
         val userLogin = arguments?.getString(ARG_USERNAME)
         if (userLogin != null) {
             userDetailViewModel.getGithubUser(userLogin)
             userDetailViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-                binding?.let { loading.showLoading(isLoading, it.progressBar2) }
+                binding.let { loading.showLoading(isLoading, it.progressBar2) }
             }
             userDetailViewModel.listDetail.observe(viewLifecycleOwner) { detailList ->
                 detailUser = detailList
@@ -46,11 +54,35 @@ class DetailFragment : Fragment() {
 
             }
         }
-        return binding!!.root
+        setHasOptionsMenu(true)
+        return binding.root
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.theme_setting -> {
+                // Tindakan yang akan diambil ketika item "theme_setting" diklik
+                true
+            }
+
+            R.id.favorites -> {
+                // Tindakan yang akan diambil ketika item "favorites" diklik
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun setDataToView() {
-        binding?.apply {
+        binding.apply {
             detailUser.avatarUrl?.let { imgDetailUser.loadImage(it) }
             tvDetailName.text = detailUser.name ?: getString(R.string.noname)
             tvDetailUsername.text = detailUser.login
@@ -65,10 +97,10 @@ class DetailFragment : Fragment() {
         val login = Bundle()
         login.putString(EXTRA_FRAGMENT, detailUser.login)
         val sectionPagerAdapter = SectionPagerAdapter(requireActivity(), login)
-        val viewPager: ViewPager2 = binding!!.viewPager
+        val viewPager: ViewPager2 = binding.viewPager
 
         viewPager.adapter = sectionPagerAdapter
-        val tabs: TabLayout = binding!!.tabs
+        val tabs: TabLayout = binding.tabs
         val tabTitle = resources.getStringArray(R.array.tab)
 
         TabLayoutMediator(tabs, viewPager) { tab, position ->
