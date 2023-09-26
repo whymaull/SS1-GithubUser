@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#AEC3AE"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.detail.ThemeSettingFragment">
 
@@ -30,7 +31,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_dark_mode_24"
+        app:srcCompat="@drawable/baseline_wb_sunny_black"
         tools:ignore="ContentDescription" />
 
     <ImageView
@@ -41,19 +42,18 @@
         android:minHeight="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/switch_theme"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_wb_sunny_24"
+        app:srcCompat="@drawable/baseline_dark_mode_black"
         tools:ignore="ContentDescription" />
 
     <TextView
-        style="@style/TextContent.TitleDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/theme_setting"
+        android:textAlignment="center"
+        android:textSize="32sp"
         app:layout_constraintBottom_toTopOf="@+id/switch_theme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
