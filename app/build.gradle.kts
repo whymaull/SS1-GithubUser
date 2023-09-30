@@ -10,7 +10,7 @@ android {
 
 	defaultConfig {
 
-		buildConfigField("String", "GITHUB_TOKEN", "\"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\""
+		buildConfigField("String", "GITHUB_TOKEN", "\"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\""
 		)
 		applicationId = "com.example.ss1_githubuser"
 		minSdk = 24
@@ -60,7 +60,9 @@ dependencies {
 	implementation("androidx.room:room-ktx:2.5.2")
     implementation("androidx.datastore:datastore-core:1.0.0")
 	implementation("androidx.datastore:datastore-preferences:1.0.0")
-	implementation("com.airbnb.android:lottie:4.2.0")
+	implementation("com.airbnb.android:lottie:6.1.0")
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
     testImplementation("junit:junit:4.13.2")
 	androidTestImplementation("androidx.test.ext:junit:1.1.5")
 	androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

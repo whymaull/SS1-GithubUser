@@ -1,31 +1,32 @@
 package com.example.ss1_githubuser.ui.settings
 
+import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 class SettingsPreferences private constructor(private val dataStore: DataStore<Preferences>) {
 
-    // Menggunakan Boolean sebagai jenis kembalian yang benar
+    private val THEME_KEY = booleanPreferencesKey("theme_setting")
+
     fun getThemeSetting(): Flow<Boolean> {
-        // Menggunakan preferencesKey untuk mendapatkan nilai boolean dari DataStore
         return dataStore.data.map { preferences ->
             preferences[THEME_KEY] ?: false
         }
     }
 
-    suspend fun saveThemeSetting(isLightModeActive: Boolean) {
+    suspend fun saveThemeSetting(isDarkModeActive: Boolean) {
         dataStore.edit { preferences ->
-            preferences[THEME_KEY] = isLightModeActive
+            preferences[THEME_KEY] = isDarkModeActive
         }
     }
 
     companion object {
-        private val THEME_KEY = booleanPreferencesKey("theme_setting")
-
         @Volatile
         private var INSTANCE: SettingsPreferences? = null
 

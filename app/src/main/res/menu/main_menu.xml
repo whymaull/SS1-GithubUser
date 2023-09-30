@@ -4,14 +4,14 @@
 
     <group android:menuCategory="container">
         <item
-            android:id="@+id/theme_setting"
-            android:icon="@drawable/baseline_settings_24"
+            android:id="@+id/favorites"
+            android:icon="@drawable/baseline_favorite_black"
             android:title="@string/search"
             app:showAsAction="ifRoom" />
 
         <item
-            android:id="@+id/favorites"
-            android:icon="@drawable/baseline_favorite_24"
+            android:id="@+id/theme_settings"
+            android:icon="@drawable/baseline_settings_black"
             android:title="@string/favoriteduser"
             app:showAsAction="always" />
     </group>

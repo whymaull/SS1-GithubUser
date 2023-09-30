@@ -67,13 +67,23 @@ class DetailFragment : Fragment() {
     @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.theme_setting -> {
-                // Tindakan yang akan diambil ketika item "theme_setting" diklik
+            R.id.theme_settings -> {
+                // Arahkan ke fragment Theme
+                val themeFragment = ThemeSettingFragment()
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, themeFragment)
+                    .addToBackStack(null)
+                    .commit()
                 true
             }
 
             R.id.favorites -> {
                 // Tindakan yang akan diambil ketika item "favorites" diklik
+                val favUserFragment = FavUserFragment() // Gantilah dengan nama fragment yang sesuai
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, favUserFragment)
+                    .addToBackStack(null)
+                    .commit()
                 true
             }
 

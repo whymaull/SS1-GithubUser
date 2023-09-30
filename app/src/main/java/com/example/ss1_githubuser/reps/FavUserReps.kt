@@ -20,10 +20,12 @@ class FavUserReps(application: Application) {
     fun getAllFavorites(): LiveData<List<FavUser>> = mFavoriteUserDao.getAllUser()
 
     fun insert(user: FavUser) {
-        executorService.execute { mFavoriteUserDao.insertFavorite(user) }
+        executorService.execute { mFavoriteUserDao.insert(user) }
     }
-
-    fun delete(id: Int) {
-        executorService.execute { mFavoriteUserDao.removeFavorite(id) }
+    fun delete(user: FavUser) {
+        executorService.execute { mFavoriteUserDao.delete(user) }
+    }
+    fun update(user: FavUser) {
+        executorService.execute { mFavoriteUserDao.update(user) }
     }
 }

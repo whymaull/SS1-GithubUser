@@ -81,7 +81,7 @@ class HomeFragment : Fragment() {
     @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.theme_setting -> {
+            R.id.theme_settings -> {
                 // Arahkan ke fragment Theme
                 val themeFragment = ThemeSettingFragment()
                 requireActivity().supportFragmentManager.beginTransaction()

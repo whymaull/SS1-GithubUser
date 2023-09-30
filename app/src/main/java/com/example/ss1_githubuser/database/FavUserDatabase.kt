@@ -17,11 +17,8 @@ abstract class FavUserRoomDatabase : RoomDatabase() {
         fun getDatabase(context: Context): FavUserRoomDatabase {
             if (INSTANCE == null) {
                 synchronized(FavUserRoomDatabase::class.java) {
-                    INSTANCE = Room.databaseBuilder(
-                        context.applicationContext,
-                        FavUserRoomDatabase::class.java, "favorite_user_database"
-                    )
-                        .fallbackToDestructiveMigration()
+                    INSTANCE = Room.databaseBuilder(context.applicationContext,
+                        FavUserRoomDatabase::class.java, "favorite_user_database")
                         .build()
                 }
             }

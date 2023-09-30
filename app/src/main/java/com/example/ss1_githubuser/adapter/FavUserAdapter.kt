@@ -1,7 +1,5 @@
 package com.example.ss1_githubuser.adapter
 
-import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -22,26 +20,6 @@ class FavUserAdapter: RecyclerView.Adapter<FavUserAdapter.FavoriteUserViewHolder
         diffResult.dispatchUpdatesTo(this)
     }
 
-    class FavoriteUserViewHolder(private val binding: ListUserBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(favorites: FavUser) {
-            with(binding) {
-                tvUsername.text = favorites.login
-                tvUrl.text = favorites.htmlUrl
-                itemView.setOnClickListener {
-//                    val bundle: Bundle
-//                    bundle.run {
-//                        putString("username", favorites.login)
-//                    }
-
-                }
-            }
-            Glide.with(itemView.context)
-                .load(favorites.avatarUrl)
-                .circleCrop()
-                .into(binding.imgUserphoto)
-        }
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteUserViewHolder {
         val itemRowUserBinding = ListUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return FavoriteUserViewHolder(itemRowUserBinding)
@@ -53,4 +31,26 @@ class FavUserAdapter: RecyclerView.Adapter<FavUserAdapter.FavoriteUserViewHolder
     }
 
     override fun getItemCount(): Int = listFavorites.size
+
+    class FavoriteUserViewHolder(private val binding: ListUserBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(favorites: FavUser) {
+            with(binding) {
+                tvUsername.text = favorites.title
+                tvUrl.text = favorites.description
+                itemView.setOnClickListener {
+//                    val bundle: Bundle
+//                    bundle.run {
+//                        putString("username", favorites.login)
+//                    }
+
+                }
+            }
+//            Glide.with(itemView.context)
+//                .load(favorites.avatarUrl)
+//                .circleCrop()
+//                .into(binding.imgUserphoto)
+        }
+    }
+
+
 }

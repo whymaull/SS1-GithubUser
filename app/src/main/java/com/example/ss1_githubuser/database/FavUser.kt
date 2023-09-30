@@ -1,22 +1,27 @@
 package com.example.ss1_githubuser.database
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
 @Entity
+@Parcelize
 data class FavUser(
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+
     @ColumnInfo(name = "id")
-    var id: Int,
+    var id: Int = 0,
 
-    @ColumnInfo(name = "login")
-    var login: String?,
+    @ColumnInfo(name = "title")
+    var title: String? = null,
 
-    @ColumnInfo(name = "html_url")
-    var htmlUrl: String? = null,
+    @ColumnInfo(name = "description")
+    var description: String? = null,
 
-    @ColumnInfo(name = "avatar_url")
-    var avatarUrl: String? = null,
-)
+    @ColumnInfo(name = "date")
+    var date: String? = null
+
+): Parcelable
