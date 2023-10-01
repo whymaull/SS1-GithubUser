@@ -37,12 +37,13 @@ class DetailFragment : Fragment() {
     private lateinit var userDetailViewModel: UserDetailViewModel
     private lateinit var detailUser: DetailResponse
     private val loading = Loading()
+    private var isFavorite = false
 
     private val favUserUpdateViewModel by lazy {
         FavUserUpdateViewModel(requireActivity().application)
     }
 
-    private lateinit var fabAdd: FloatingActionButton // Pindahkan inisialisasi ke luar blok observe
+    private lateinit var fabAdd: FloatingActionButton
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,11 +66,41 @@ class DetailFragment : Fragment() {
                 setDataToView()
                 setTabLayoutView()
                 fabAdd = binding.fabFavorite
+
+                favUserUpdateViewModel.checkUser("${detailUser.id}")
+                    .observe(viewLifecycleOwner) { user ->
+                        isFavorite = user != null
+                        Log.i("DetailFragment", "onResponse: user $isFavorite ")
+                        Log.i("DetailFragment", "onResponse: User ${detailUser.avatarUrl} ")
+
+                        if (isFavorite){
+                            fabAdd.setImageResource(R.drawable.baseline_favorite_black)
+
+                        }else{
+                            fabAdd.setImageResource(R.drawable.baseline_favorite_border_24)
+
+                        }
+
+                    }
+
                 fabAdd.setOnClickListener {
-                    val user = FavUser(title = detailUser.login, description = detailUser.name)
-                    Log.i("DetailFragment", "onCreateView: ${user.id} ${user.title}  ")
-                    favUserUpdateViewModel.insert(user)
-                    showToast(getString(R.string.added))
+                    val favUser =    FavUser(
+                        id = detailUser.id!!,
+                        title = detailUser.login,
+                        description = detailUser.name,
+                        date = detailUser.avatarUrl
+                    )
+                    Log.i("DetailFragment", "onCreateView: ${favUser.id} ${favUser.title} ${detailUser.avatarUrl}  ")
+
+                    if (isFavorite) {
+                        favUserUpdateViewModel.delete(favUser)
+                        fabAdd.setImageResource(R.drawable.baseline_favorite_border_24)
+                        showToast(getString(R.string.delete))
+                    } else {
+                        favUserUpdateViewModel.insert(favUser)
+                        fabAdd.setImageResource(R.drawable.baseline_favorite_black)
+                        showToast(getString(R.string.added))
+                    }
                 }
             }
         }

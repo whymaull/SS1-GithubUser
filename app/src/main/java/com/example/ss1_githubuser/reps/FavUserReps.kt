@@ -28,4 +28,7 @@ class FavUserReps(application: Context) {
     fun update(user: FavUser) {
         executorService.execute { mFavoriteUserDao.update(user) }
     }
+    fun checkUser(username: String): LiveData<FavUser> {
+        return mFavoriteUserDao.getFavoriteUserByUsername(username)
+    }
 }

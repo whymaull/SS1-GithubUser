@@ -4,7 +4,6 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
-    card_view:cardBackgroundColor="@color/snow"
     card_view:cardCornerRadius="8dp"
     card_view:strokeWidth="2dp"
     android:layout_gravity="top"

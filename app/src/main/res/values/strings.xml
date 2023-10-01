@@ -16,11 +16,13 @@
     <string name="username_placeholder">Username</string>
     <string name="noname">Name not set</string>
     <string name="nolocation">Location not set</string>
-    <string name="toolbar">Github User</string>
+    <string name="detailUser">Detail User</string>
     <string name="favoriteduser">Favorited User</string>
     <string name="theme_setting">Theme Settings</string>
+    <string name="dark_mode">Dark Mode</string>
     <string name="user_favorites">Favorite Users</string>
     <string name="added">User berhasil ditambahkan ke daftar Favorit</string>
+    <string name="delete">User berhasil dihapus dari daftar Favorit</string>
 
     <string-array name="tab">
         <item>@string/followers_title</item>
