@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.ss1_githubuser.ui.detail.FollowersFragment
-import com.example.ss1_githubuser.ui.detail.FollowingFragment
+import com.example.ss1_githubuser.ui.fragment.FollowersFragment
+import com.example.ss1_githubuser.ui.fragment.FollowingFragment
 
 class SectionPagerAdapter(activity: FragmentActivity, private val login: Bundle) : FragmentStateAdapter(activity) {
     override fun getItemCount(): Int {

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/startFragment"
-        android:name="com.example.ss1_githubuser.ui.detail.StartFragment"
+        android:name="com.example.ss1_githubuser.ui.fragment.StartFragment"
         android:label="fragment_start"
         tools:layout="@layout/fragment_start" >
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.ss1_githubuser.ui.detail.HomeFragment"
+        android:name="com.example.ss1_githubuser.ui.fragment.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.example.ss1_githubuser.ui.detail.DetailFragment"
+        android:name="com.example.ss1_githubuser.ui.fragment.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" />
 

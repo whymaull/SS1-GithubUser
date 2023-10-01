@@ -1,10 +1,8 @@
-package com.example.ss1_githubuser.ui.detail
+package com.example.ss1_githubuser.ui.activity
 
+import android.annotation.SuppressLint
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.CompoundButton
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
@@ -15,20 +13,17 @@ import com.example.ss1_githubuser.ui.viewmodel.ThemeSettingsViewModel
 import com.example.ss1_githubuser.ui.viewmodel.ViewModelFactory
 import com.google.android.material.switchmaterial.SwitchMaterial
 
+class SettingsActivity : AppCompatActivity() {
+    @SuppressLint("MissingInflatedId")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_settings)
 
-class ThemeSettingFragment : Fragment() {
+        val switchTheme = findViewById<SwitchMaterial>(R.id.switch_theme)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_theme_setting, container, false)
-
-        val switchTheme: SwitchMaterial = view.findViewById(R.id.switch_theme)
-
-        val pref = SettingsPreferences.getInstance(requireActivity().dataStore)
-        val myViewModel = ViewModelProvider(this, ViewModelFactory(pref))[ThemeSettingsViewModel::class.java]
-        myViewModel.getThemeSettings().observe(viewLifecycleOwner) { isDarkModeActive: Boolean ->
+        val pref = SettingsPreferences.getInstance(application.dataStore)
+        val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref))[ThemeSettingsViewModel::class.java]
+        mainViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 switchTheme.isChecked = true
@@ -39,8 +34,7 @@ class ThemeSettingFragment : Fragment() {
         }
 
         switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
-            myViewModel.saveThemeSetting(isChecked)
+            mainViewModel.saveThemeSetting(isChecked)
         }
-        return view
     }
 }

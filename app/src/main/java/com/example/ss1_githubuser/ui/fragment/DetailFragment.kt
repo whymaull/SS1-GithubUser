@@ -1,13 +1,15 @@
-package com.example.ss1_githubuser.ui.detail
+package com.example.ss1_githubuser.ui.fragment
 
-import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -15,9 +17,15 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.ss1_githubuser.R
 import com.example.ss1_githubuser.adapter.SectionPagerAdapter
 import com.example.ss1_githubuser.data.DetailResponse
+import com.example.ss1_githubuser.database.FavUser
 import com.example.ss1_githubuser.databinding.FragmentDetailBinding
 import com.example.ss1_githubuser.tools.Loading
+import com.example.ss1_githubuser.tools.loadImage
+import com.example.ss1_githubuser.ui.activity.FavUserActivity
+import com.example.ss1_githubuser.ui.activity.SettingsActivity
+import com.example.ss1_githubuser.ui.viewmodel.FavUserUpdateViewModel
 import com.example.ss1_githubuser.ui.viewmodel.UserDetailViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -30,7 +38,12 @@ class DetailFragment : Fragment() {
     private lateinit var detailUser: DetailResponse
     private val loading = Loading()
 
-    @SuppressLint("FragmentLiveDataObserve")
+    private val favUserUpdateViewModel by lazy {
+        FavUserUpdateViewModel(requireActivity().application)
+    }
+
+    private lateinit var fabAdd: FloatingActionButton // Pindahkan inisialisasi ke luar blok observe
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,12 +64,19 @@ class DetailFragment : Fragment() {
                 detailUser = detailList
                 setDataToView()
                 setTabLayoutView()
-
+                fabAdd = binding.fabFavorite
+                fabAdd.setOnClickListener {
+                    val user = FavUser(title = detailUser.login, description = detailUser.name)
+                    Log.i("DetailFragment", "onCreateView: ${user.id} ${user.title}  ")
+                    favUserUpdateViewModel.insert(user)
+                    showToast(getString(R.string.added))
+                }
             }
         }
         setHasOptionsMenu(true)
         return binding.root
     }
+
 
     @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -68,22 +88,16 @@ class DetailFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.theme_settings -> {
-                // Arahkan ke fragment Theme
-                val themeFragment = ThemeSettingFragment()
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, themeFragment)
-                    .addToBackStack(null)
-                    .commit()
+                // Arahkan ke Settings Activity
+                val settingsIntent = Intent(requireContext(), SettingsActivity::class.java)
+                startActivity(settingsIntent)
                 true
             }
 
             R.id.favorites -> {
-                // Tindakan yang akan diambil ketika item "favorites" diklik
-                val favUserFragment = FavUserFragment() // Gantilah dengan nama fragment yang sesuai
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, favUserFragment)
-                    .addToBackStack(null)
-                    .commit()
+                // Arahkan ke Favorites Activity
+                val favIntent = Intent(requireContext(), FavUserActivity::class.java)
+                startActivity(favIntent)
                 true
             }
 
@@ -108,8 +122,8 @@ class DetailFragment : Fragment() {
         login.putString(EXTRA_FRAGMENT, detailUser.login)
         val sectionPagerAdapter = SectionPagerAdapter(requireActivity(), login)
         val viewPager: ViewPager2 = binding.viewPager
-
         viewPager.adapter = sectionPagerAdapter
+
         val tabs: TabLayout = binding.tabs
         val tabTitle = resources.getStringArray(R.array.tab)
 
@@ -118,10 +132,15 @@ class DetailFragment : Fragment() {
         }.attach()
     }
 
+    private fun showToast(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
     companion object {
         private const val ARG_USERNAME = "username"
         const val EXTRA_FRAGMENT = "extra_fragment"
@@ -134,5 +153,4 @@ class DetailFragment : Fragment() {
             return fragment
         }
     }
-
 }

@@ -22,6 +22,4 @@ class FavDiffCallback(private val mOldFavList: List<FavUser>, private val mNewFa
         val newFavList = mNewFavList[newItemPosition]
         return oldFavList.title == newFavList.title && oldFavList.description == newFavList.description
     }
-
-
 }

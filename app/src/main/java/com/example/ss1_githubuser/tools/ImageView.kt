@@ -1,4 +1,4 @@
-package com.example.ss1_githubuser.ui.detail
+package com.example.ss1_githubuser.tools
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide

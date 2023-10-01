@@ -1,4 +1,4 @@
-package com.example.ss1_githubuser.ui.detail
+package com.example.ss1_githubuser.ui.activity
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity

@@ -1,13 +1,16 @@
 package com.example.ss1_githubuser.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.ss1_githubuser.database.FavUser
+import com.example.ss1_githubuser.databinding.ListFollowBinding
 import com.example.ss1_githubuser.databinding.ListUserBinding
 import com.example.ss1_githubuser.tools.FavDiffCallback
+import com.example.ss1_githubuser.ui.activity.FavUserUpdate
 
 class FavUserAdapter: RecyclerView.Adapter<FavUserAdapter.FavoriteUserViewHolder>() {
     private val listFavorites = ArrayList<FavUser>()
@@ -32,25 +35,18 @@ class FavUserAdapter: RecyclerView.Adapter<FavUserAdapter.FavoriteUserViewHolder
 
     override fun getItemCount(): Int = listFavorites.size
 
-    class FavoriteUserViewHolder(private val binding: ListUserBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(favorites: FavUser) {
+    inner class FavoriteUserViewHolder(private val binding: ListUserBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(user: FavUser) {
             with(binding) {
-                tvUsername.text = favorites.title
-                tvUrl.text = favorites.description
-                itemView.setOnClickListener {
-//                    val bundle: Bundle
-//                    bundle.run {
-//                        putString("username", favorites.login)
-//                    }
-
+                tvUsername.text = user.title
+                tvUrl.text = user.description
+                cardView.setOnClickListener {
+//                    val intent = Intent(it.context, FavUserUpdate::class.java)
+////                    intent.putExtra(NoteAddUpdateActivity.EXTRA_NOTE, note)
+//                    it.context.startActivity(intent)
                 }
             }
-//            Glide.with(itemView.context)
-//                .load(favorites.avatarUrl)
-//                .circleCrop()
-//                .into(binding.imgUserphoto)
         }
     }
-
 
 }

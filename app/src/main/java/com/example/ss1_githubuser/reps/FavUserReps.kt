@@ -1,6 +1,6 @@
 package com.example.ss1_githubuser.reps
 
-import android.app.Application
+import android.content.Context
 import androidx.lifecycle.LiveData
 import com.example.ss1_githubuser.database.FavUser
 import com.example.ss1_githubuser.database.FavUserDao
@@ -8,7 +8,7 @@ import com.example.ss1_githubuser.database.FavUserRoomDatabase
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class FavUserReps(application: Application) {
+class FavUserReps(application: Context) {
     private val mFavoriteUserDao: FavUserDao
     private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
 

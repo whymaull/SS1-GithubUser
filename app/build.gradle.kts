@@ -2,6 +2,7 @@ plugins {
 	id("com.android.application")
 	id("org.jetbrains.kotlin.android")
 	id("kotlin-parcelize")
+	id("com.google.devtools.ksp")
 }
 
 android {
@@ -28,11 +29,11 @@ android {
 		}
 	}
 	compileOptions {
-		sourceCompatibility = JavaVersion.VERSION_1_8
-		targetCompatibility = JavaVersion.VERSION_1_8
+		sourceCompatibility = JavaVersion.VERSION_17
+		targetCompatibility = JavaVersion.VERSION_17
 	}
 	kotlinOptions {
-		jvmTarget = "1.8"
+		jvmTarget = "17"
 	}
 
 	buildFeatures{
@@ -55,7 +56,7 @@ dependencies {
 	implementation("com.loopj.android:android-async-http:1.4.11")
 	implementation("com.squareup.retrofit2:retrofit:2.9.0")
 	implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-	implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
+	implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
 	implementation("androidx.room:room-common:2.5.2")
 	implementation("androidx.room:room-ktx:2.5.2")
     implementation("androidx.datastore:datastore-core:1.0.0")
@@ -63,6 +64,10 @@ dependencies {
 	implementation("com.airbnb.android:lottie:6.1.0")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+	implementation ("androidx.fragment:fragment-ktx:1.6.1")
+	implementation("androidx.datastore:datastore-preferences:1.0.0")
+	implementation("androidx.room:room-runtime:2.5.2")
+	ksp("androidx.room:room-compiler:2.5.2")
     testImplementation("junit:junit:4.13.2")
 	androidTestImplementation("androidx.test.ext:junit:1.1.5")
 	androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

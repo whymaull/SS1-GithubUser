@@ -1,9 +1,10 @@
-package com.example.ss1_githubuser.ui.detail
+package com.example.ss1_githubuser.ui.fragment
 
 
 import android.annotation.SuppressLint
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -15,9 +16,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,7 +24,8 @@ import com.example.ss1_githubuser.adapter.SearchAdapter
 import com.example.ss1_githubuser.data.GithubUser
 import com.example.ss1_githubuser.databinding.FragmentHomeBinding
 import com.example.ss1_githubuser.tools.Loading
-import com.example.ss1_githubuser.ui.settings.SettingsPreferences
+import com.example.ss1_githubuser.ui.activity.FavUserActivity
+import com.example.ss1_githubuser.ui.activity.SettingsActivity
 import com.example.ss1_githubuser.ui.viewmodel.MyViewModel
 
 //private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
@@ -49,9 +48,6 @@ class HomeFragment : Fragment() {
 
         val toolbar = binding.toolbar
         (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
-
-        //val pref = SettingsPreferences.getInstance(requireActivity().dataStore)
-        //myViewModel = ViewModelProvider(this, SettingsViewModelFactory(pref))[myViewModel::class.java]
 
         myViewModel.listGithubUser.observe(this) { listGithubUser ->
             setUserData(listGithubUser)
@@ -82,22 +78,16 @@ class HomeFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.theme_settings -> {
-                // Arahkan ke fragment Theme
-                val themeFragment = ThemeSettingFragment()
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, themeFragment)
-                    .addToBackStack(null)
-                    .commit()
+                // Arahkan ke Settings Activity
+                val settingsIntent = Intent(requireContext(), SettingsActivity::class.java)
+                startActivity(settingsIntent)
                 true
             }
 
             R.id.favorites -> {
-                // Tindakan yang akan diambil ketika item "favorites" diklik
-                val favUserFragment = FavUserFragment() // Gantilah dengan nama fragment yang sesuai
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, favUserFragment)
-                    .addToBackStack(null)
-                    .commit()
+                // Arahkan ke Favorites Activity
+                val favIntent = Intent(requireContext(), FavUserActivity::class.java)
+                startActivity(favIntent)
                 true
             }
 
