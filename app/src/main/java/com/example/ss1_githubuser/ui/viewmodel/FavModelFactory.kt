@@ -23,8 +23,8 @@ class FavModelFactory private constructor(private val mApplication: Application)
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(FavUserViewModel::class.java)) {
             return FavUserViewModel(mApplication) as T
-        } else if (modelClass.isAssignableFrom(FavUserUpdateViewModel::class.java)) {
-            return FavUserUpdateViewModel(mApplication) as T
+        } else if (modelClass.isAssignableFrom(FavUserUpdateDeleteVM::class.java)) {
+            return FavUserUpdateDeleteVM(mApplication) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
     }
