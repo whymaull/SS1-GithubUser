@@ -86,11 +86,11 @@ class DetailFragment : Fragment() {
                 fabAdd.setOnClickListener {
                     val favUser =    FavUser(
                         id = detailUser.id!!,
-                        title = detailUser.login,
-                        description = detailUser.name,
-                        date = detailUser.avatarUrl
+                        username = detailUser.login,
+                        fullName = detailUser.name,
+                        imgUrl = detailUser.avatarUrl
                     )
-                    Log.i("DetailFragment", "onCreateView: ${favUser.id} ${favUser.title} ${detailUser.avatarUrl}  ")
+                    Log.i("DetailFragment", "onCreateView: ${favUser.id} ${favUser.username} ${favUser.imgUrl}  ")
 
                     if (isFavorite) {
                         favUserUpdateViewModel.delete(favUser)
@@ -119,14 +119,14 @@ class DetailFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.theme_settings -> {
-                // Arahkan ke Settings Activity
+                // ke Settings Activity
                 val settingsIntent = Intent(requireContext(), SettingsActivity::class.java)
                 startActivity(settingsIntent)
                 true
             }
 
             R.id.favorites -> {
-                // Arahkan ke Favorites Activity
+                // ke Favorites Activity
                 val favIntent = Intent(requireContext(), FavUserActivity::class.java)
                 startActivity(favIntent)
                 true

@@ -7,7 +7,7 @@ import com.example.ss1_githubuser.database.FavUser
 import com.example.ss1_githubuser.reps.FavUserReps
 
 class FavUserViewModel(application: Application) : ViewModel() {
-    private val mFavoriteUserRepository: FavUserReps = FavUserReps(application)
+    private val mFavUserReps: FavUserReps = FavUserReps(application)
 
-    fun getAllFavorites(): LiveData<List<FavUser>> = mFavoriteUserRepository.getAllFavorites()
+    fun getAllFavorites(): LiveData<List<FavUser>> = mFavUserReps.getAllFavorites()
 }

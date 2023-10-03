@@ -8,7 +8,7 @@ import com.example.ss1_githubuser.reps.FavUserReps
 
 class FavUserUpdateViewModel (application: Application) : ViewModel() {
 
-    var mFavUserReps: FavUserReps = FavUserReps(application)
+    private var mFavUserReps: FavUserReps = FavUserReps(application)
     fun insert(user: FavUser) {
         mFavUserReps.insert(user)
     }

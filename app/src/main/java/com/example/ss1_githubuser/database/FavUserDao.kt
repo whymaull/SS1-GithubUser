@@ -1,6 +1,5 @@
 package com.example.ss1_githubuser.database
 
-import android.provider.ContactsContract
 import androidx.lifecycle.LiveData
 import androidx.room.*
 
@@ -15,7 +14,7 @@ interface FavUserDao {
     @Query("SELECT * from FavUser ORDER BY id ASC")
     fun getAllUser(): LiveData<List<FavUser>>
 
-    @Query("SELECT * FROM favuser WHERE id = :username")
+    @Query("SELECT * FROM FavUser WHERE id = :username")
     fun getFavoriteUserByUsername(username: String): LiveData<FavUser>
 
 }

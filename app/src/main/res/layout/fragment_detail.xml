@@ -157,7 +157,6 @@
             android:layout_gravity="bottom|end"
             android:layout_marginBottom="16dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/baseline_favorite_border_24"
             android:clickable="true"
             android:focusable="true"
             app:shapeAppearance="@style/Widget.MaterialComponents.BottomSheet"

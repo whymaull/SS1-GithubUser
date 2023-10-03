@@ -28,7 +28,7 @@ import com.example.ss1_githubuser.ui.activity.FavUserActivity
 import com.example.ss1_githubuser.ui.activity.SettingsActivity
 import com.example.ss1_githubuser.ui.viewmodel.MyViewModel
 
-//private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+
 @Suppress("DEPRECATION")
 class HomeFragment : Fragment() {
 
@@ -129,14 +129,13 @@ class HomeFragment : Fragment() {
             override fun onItemClicked(data: GithubUser) {
                 showSelectedUser(data)
             }
-
         })
     }
 
     private fun showSelectedUser(data: GithubUser) {
         val detailFragment = DetailFragment.newInstance(data.login)
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container, detailFragment)
+        transaction.replace(R.id.frame_container, detailFragment)
         transaction.addToBackStack(null)
         transaction.commit()
         binding.searchView.setQuery("", false)

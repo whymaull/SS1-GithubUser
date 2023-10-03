@@ -20,6 +20,6 @@ class FavDiffCallback(private val mOldFavList: List<FavUser>, private val mNewFa
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         val oldFavList = mOldFavList[oldItemPosition]
         val newFavList = mNewFavList[newItemPosition]
-        return oldFavList.title == newFavList.title && oldFavList.description == newFavList.description
+        return oldFavList.username == newFavList.username && oldFavList.fullName == newFavList.fullName
     }
 }

@@ -15,13 +15,13 @@ data class FavUser(
     @ColumnInfo(name = "id")
     var id: Int = 0,
 
-    @ColumnInfo(name = "title")
-    var title: String? = null,
+    @ColumnInfo(name = "username")
+    var username: String? = null,
 
-    @ColumnInfo(name = "description")
-    var description: String? = null,
+    @ColumnInfo(name = "fullName")
+    var fullName: String? = null,
 
-    @ColumnInfo(name = "date")
-    var date: String? = null
+    @ColumnInfo(name = "imgUrl")
+    var imgUrl: String? = null
 
 ): Parcelable

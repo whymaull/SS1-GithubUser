@@ -1,6 +1,5 @@
 package com.example.ss1_githubuser.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -10,7 +9,7 @@ import com.example.ss1_githubuser.database.FavUser
 import com.example.ss1_githubuser.databinding.ListUserBinding
 import com.example.ss1_githubuser.tools.FavDiffCallback
 
-class FavUserAdapter: RecyclerView.Adapter<FavUserAdapter.FavoriteUserViewHolder>() {
+class FavUserAdapter(private val onItemClickListener: FavUserAdapter.OnItemClickListener) : RecyclerView.Adapter<FavUserAdapter.FavoriteUserViewHolder>() {
     private val listFavorites = ArrayList<FavUser>()
 
     fun setFavorites(favorites: List<FavUser>) {
@@ -23,7 +22,7 @@ class FavUserAdapter: RecyclerView.Adapter<FavUserAdapter.FavoriteUserViewHolder
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteUserViewHolder {
         val itemRowUserBinding = ListUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return FavoriteUserViewHolder(itemRowUserBinding)
+        return FavoriteUserViewHolder(itemRowUserBinding, onItemClickListener)
     }
 
     override fun onBindViewHolder(holder: FavoriteUserViewHolder, position: Int) {
@@ -33,17 +32,24 @@ class FavUserAdapter: RecyclerView.Adapter<FavUserAdapter.FavoriteUserViewHolder
 
     override fun getItemCount(): Int = listFavorites.size
 
-    inner class FavoriteUserViewHolder(private val binding: ListUserBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class FavoriteUserViewHolder(private val binding: ListUserBinding, private val  onItemClickListener: OnItemClickListener) : RecyclerView.ViewHolder(binding.root) {
         fun bind(user: FavUser) {
             with(binding) {
-                tvUsername.text = user.title
-                tvUrl.text = user.description
-                Log.i("FavUserAdapter", "bind: ${user.date}")
+                tvUsername.text = user.username
+                tvUrl.text = user.fullName
                 Glide.with(binding.root.context)
-                    .load(user.date)
+                    .load(user.imgUrl)
                     .circleCrop()
                     .into(binding.imgUserphoto)
+
+                itemView.setOnClickListener {
+                    onItemClickListener.onItemClick(user)
+                }
             }
         }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(item: FavUser)
     }
 }
