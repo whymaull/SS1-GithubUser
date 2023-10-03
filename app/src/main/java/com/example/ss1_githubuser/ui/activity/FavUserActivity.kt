@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.ss1_githubuser.R
 import com.example.ss1_githubuser.adapter.FavUserAdapter
 import com.example.ss1_githubuser.database.FavUser
 import com.example.ss1_githubuser.databinding.ActivityFavUserBinding
@@ -46,8 +47,9 @@ class FavUserActivity : AppCompatActivity(), FavUserAdapter.OnItemClickListener 
 
     override fun onItemClick(item: FavUser) {
         val username = item.username
-        val intent = Intent(this@FavUserActivity, HomeFragment::class.java)
+        val intent = Intent(this@FavUserActivity, MainActivity::class.java)
         intent.putExtra("username", username)
         startActivity(intent)
     }
+
 }

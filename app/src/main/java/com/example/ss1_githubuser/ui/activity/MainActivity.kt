@@ -5,11 +5,11 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import com.example.ss1_githubuser.R
 import com.example.ss1_githubuser.ui.fragment.DetailFragment
+import com.example.ss1_githubuser.ui.fragment.HomeFragment
 import com.example.ss1_githubuser.ui.settings.SettingsPreferences
 import com.example.ss1_githubuser.ui.settings.dataStore
 import com.example.ss1_githubuser.ui.viewmodel.ThemeSettingsViewModel
@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main)
-		//val switchTheme: SwitchMaterial =findViewById(R.id.switch_theme)
 
 		val pref = SettingsPreferences.getInstance(this.dataStore)
 		val myViewModel = ViewModelProvider(this, ViewModelFactory(pref))[ThemeSettingsViewModel::class.java]
@@ -71,9 +70,5 @@ class MainActivity : AppCompatActivity() {
 					.commit()
 			}
 		}
-	}
-
-	override fun onCreateOptionsMenu(menu: Menu): Boolean {
-		return super.onCreateOptionsMenu(menu)
 	}
 }

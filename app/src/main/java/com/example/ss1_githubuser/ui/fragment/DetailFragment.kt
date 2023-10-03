@@ -23,7 +23,7 @@ import com.example.ss1_githubuser.tools.Loading
 import com.example.ss1_githubuser.tools.loadImage
 import com.example.ss1_githubuser.ui.activity.FavUserActivity
 import com.example.ss1_githubuser.ui.activity.SettingsActivity
-import com.example.ss1_githubuser.ui.viewmodel.FavUserUpdateViewModel
+import com.example.ss1_githubuser.ui.viewmodel.FavUserUpdateDeleteVM
 import com.example.ss1_githubuser.ui.viewmodel.UserDetailViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
@@ -40,7 +40,7 @@ class DetailFragment : Fragment() {
     private var isFavorite = false
 
     private val favUserUpdateViewModel by lazy {
-        FavUserUpdateViewModel(requireActivity().application)
+        FavUserUpdateDeleteVM(requireActivity().application)
     }
 
     private lateinit var fabAdd: FloatingActionButton

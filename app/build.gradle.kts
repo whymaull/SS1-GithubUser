@@ -11,7 +11,7 @@ android {
 
 	defaultConfig {
 
-		buildConfigField("String", "GITHUB_TOKEN", "\"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\""
+		buildConfigField("String", "GITHUB_TOKEN", "\"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\""
 		)
 		applicationId = "com.example.ss1_githubuser"
 		minSdk = 24
@@ -68,6 +68,9 @@ dependencies {
 	implementation("androidx.datastore:datastore-preferences:1.0.0")
 	implementation("androidx.room:room-runtime:2.5.2")
 	ksp("androidx.room:room-compiler:2.5.2")
+	implementation("androidx.arch.core:core-testing:2.2.0")
+	implementation("org.mockito:mockito-core:3.12.4")
+	testImplementation("org.mockito:mockito-inline:3.12.4")
     testImplementation("junit:junit:4.13.2")
 	androidTestImplementation("androidx.test.ext:junit:1.1.5")
 	androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
